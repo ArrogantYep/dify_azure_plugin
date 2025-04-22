@@ -1,0 +1,2 @@
+# dify_azure_plugin
+使用Azure文档智能服务从文档中提取文本和布局信息
