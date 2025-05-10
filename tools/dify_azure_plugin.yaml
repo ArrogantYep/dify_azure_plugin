@@ -1,0 +1,133 @@
+# 工具供应商的基本信息
+identity:
+  name: dify_azure_plugin
+  author: lucas
+  description: Azure Document Intelligence plugin for document analysis
+  icon: 📄
+  label:
+    en_US: Azure Document Intelligence
+    zh_Hans: Azure文档智能解析
+    pt_BR: Azure Document Intelligence
+
+# 描述
+description:
+  human:
+    en_US: Extract text and layout information from documents using Azure Document Intelligence. Supports PDF, Word, PowerPoint, and text files.
+    zh_Hans: 使用Azure文档智能服务从文档中提取文本和布局信息。支持PDF、Word、PowerPoint和文本文件。
+    pt_BR: Extract text and layout information from documents using Azure Document Intelligence. Supports PDF, Word, PowerPoint, and text files.
+  llm: Extract text and layout information from documents using Azure Document Intelligence. Supports PDF, Word, PowerPoint, and text files.
+
+# 参数
+parameters:
+  - name: file_path
+    type: string
+    required: true
+    label:
+      en_US: Document Path
+      zh_Hans: 文档路径
+      pt_BR: Document Path
+    human_description:
+      en_US: Path to the document file (PDF, Word, PowerPoint, etc.)
+      zh_Hans: 文档文件路径（支持PDF、Word、PowerPoint等格式）
+      pt_BR: Path to the document file (PDF, Word, PowerPoint, etc.)
+    llm_description: Path to the document file to be analyzed
+    form: llm
+
+  - name: output_format
+    type: string
+    required: false
+    default: "markdown"
+    label:
+      en_US: Output Format
+      zh_Hans: 输出格式
+      pt_BR: Output Format
+    human_description:
+      en_US: Output format (markdown, json, or text). Markdown format preserves document structure, JSON format provides detailed information including layout, and text format provides plain text.
+      zh_Hans: 输出格式（markdown、json或text）。Markdown格式保留文档结构，JSON格式提供包括布局在内的详细信息，text格式提供纯文本。
+      pt_BR: Output format (markdown, json, or text). Markdown format preserves document structure, JSON format provides detailed information including layout, and text format provides plain text.
+    llm_description: The format of the output (markdown, json, or text)
+    form: llm
+
+  - name: analysis_type
+    type: string
+    required: false
+    default: "prebuilt-layout"
+    label:
+      en_US: Analysis Type
+      zh_Hans: 分析类型
+      pt_BR: Analysis Type
+    human_description:
+      en_US: The type of analysis to perform
+      zh_Hans: 要执行的分析类型
+      pt_BR: The type of analysis to perform
+    llm_description: The type of analysis to perform
+    form: llm
+    enum:
+      - layout      # 布局分析
+      - prebuilt-layout  # 预构建布局
+      - prebuilt-document  # 通用文档
+      - prebuilt-invoice  # 发票
+      - prebuilt-receipt  # 收据
+      - prebuilt-tax.w2  # W2表格
+      - prebuilt-businesscard  # 名片
+      - prebuilt-idDocument  # 身份证件
+
+  - name: language
+    type: string
+    required: false
+    default: "zh-Hans"
+    label:
+      en_US: Document Language
+      zh_Hans: 文档语言
+      pt_BR: Document Language
+    human_description:
+      en_US: The language of the document
+      zh_Hans: 文档的语言
+      pt_BR: The language of the document
+    llm_description: The language of the document
+    form: llm
+    enum:
+      - zh-Hans  # 简体中文
+      - en  # 英语
+      - ja  # 日语
+      - ko  # 韩语
+      - fr  # 法语
+      - de  # 德语
+      - it  # 意大利语
+      - es  # 西班牙语
+      - pt  # 葡萄牙语
+      - nl  # 荷兰语
+
+  - name: extract_tables
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Extract Tables
+      zh_Hans: 提取表格
+      pt_BR: Extract Tables
+    human_description:
+      en_US: Whether to extract table data from the document
+      zh_Hans: 是否提取文档中的表格数据
+      pt_BR: Whether to extract table data from the document
+    llm_description: Whether to extract table data from the document
+    form: llm
+
+  - name: extract_handwriting
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Extract Handwriting
+      zh_Hans: 识别手写文本
+      pt_BR: Extract Handwriting
+    human_description:
+      en_US: Whether to extract handwriting from the document
+      zh_Hans: 是否识别文档中的手写文本
+      pt_BR: Whether to extract handwriting from the document
+    llm_description: Whether to extract handwriting from the document
+    form: llm
+
+extra:
+  python:
+    source: tools/dify_azure_plugin.py

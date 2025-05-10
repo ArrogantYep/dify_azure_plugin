@@ -1,0 +1,17 @@
+identity:
+  author: lucas
+  name: dify_azure_plugin
+  label:
+    en_US: dify_azure_plugin
+    zh_Hans: dify_azure_plugin
+    pt_BR: dify_azure_plugin
+  description:
+    en_US: document intelligence
+    zh_Hans: document intelligence
+    pt_BR: document intelligence
+  icon: icon.svg
+tools:
+  - tools/dify_azure_plugin.yaml
+extra:
+  python:
+    source: provider/dify_azure_plugin.py
